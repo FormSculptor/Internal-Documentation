@@ -472,22 +472,6 @@ This comprehensive AI integration not only enhances existing functionalities but
 - **Environmental Impact**:
   - Traditional document management relies heavily on paper, contributing to environmental degradation and unsustainable practices. According to Greenpeace, producing one ton of paper results in approximately 1.3 tons of CO2 emissions. Transitioning to digital document management can significantly reduce paper usage; an average office worker uses about 10,000 sheets of paper each year (Greenpeace, 2023).
 
-### References
-
-1. Malekany, M. (2023). "The Impact of Document Management Using Good Practices: A Literature Review". *International Journal of Professional Business Review*, 8(11), e04112. <https://doi.org/10.26668/businessreview/2023.v8i11.4112>
-
-2. Kiepek, W., et al. (2022). "The Usability of IT Systems in Document Management". *International Journal of Environmental Research and Public Health*, 19(14), 8805. <https://doi.org/10.3390/ijerph19148805>
-
-3. Office of the Privacy Commissioner for Personal Data (PCPD), Hong Kong (2023). "Cyber Security Breaches in Hong Kong: A Growing Trend and a Call to Action".
-
-4. Valaitis, A., et al. (2024). "Streamlining Tax and Administrative Document Management with AI-Powered Intelligent Document Management System". *Information*, 15(8), 461. <https://doi.org/10.3390/info15080461>
-
-5. AIIM (2023). "The Cost of Inefficient Document Management: A Study".
-
-6. Greenpeace (2023). "The Environmental Impact of Paper Production".
-
-7. PwC (2023). "The Hidden Costs of Poor Document Management".
-
 ## Our Advantages
 
 - **AI-Powered Automation**:
@@ -537,3 +521,19 @@ These advantages position FormSculptor as a leading solution in the document man
 
 1. disposable domain
 <https://raw.githubusercontent.com/disposable/disposable-email-domains/master/domains.json>
+
+### References
+
+1. Malekany, M. (2023). "The Impact of Document Management Using Good Practices: A Literature Review". *International Journal of Professional Business Review*, 8(11), e04112. <https://doi.org/10.26668/businessreview/2023.v8i11.4112>
+
+2. Kiepek, W., et al. (2022). "The Usability of IT Systems in Document Management". *International Journal of Environmental Research and Public Health*, 19(14), 8805. <https://doi.org/10.3390/ijerph19148805>
+
+3. Office of the Privacy Commissioner for Personal Data (PCPD), Hong Kong (2023). "Cyber Security Breaches in Hong Kong: A Growing Trend and a Call to Action".
+
+4. Valaitis, A., et al. (2024). "Streamlining Tax and Administrative Document Management with AI-Powered Intelligent Document Management System". *Information*, 15(8), 461. <https://doi.org/10.3390/info15080461>
+
+5. AIIM (2023). "The Cost of Inefficient Document Management: A Study".
+
+6. Greenpeace (2023). "The Environmental Impact of Paper Production".
+
+7. PwC (2023). "The Hidden Costs of Poor Document Management".
