@@ -469,14 +469,12 @@ WebApp -> User: Notify Process Completion
 
 | Phase                            | Timeline           | Milestones                                                        |
 |----------------------------------|--------------------|-------------------------------------------------------------------|
-| **Planning and Analysis**        | Month 1            | Requirements gathering, stakeholder interviews, market research   |
-| **Design**                       | Month 2            | System architecture finalized, UI/UX prototypes developed         |
-| **Development Phase 1**          | Months 3 - 4       | Core functionalities implemented (user auth, document upload)     |
-| **Development Phase 2**          | Months 5 - 6       | AI integration (OCR, classification), multi-language support      |
-| **Testing and Quality Assurance**| Month 7            | Unit testing, integration testing, performance testing            |
-| **Beta Release**                 | Month 8            | Limited user testing, feedback collection, usability assessments  |
-| **Refinement and Optimization**  | Month 9            | Implementing feedback, code optimization, security enhancements   |
-| **Deployment**                   | Month 10           | Final testing, deployment to production environment               |
+| **Planning and Analysis**        | Week 1             | Requirements gathering, stakeholder interviews, market research   |
+| **Design**                       | Week 2             | System architecture finalized, UI/UX prototypes developed         |
+| **Development Phase 1**          | Weeks 3 - 6        | Core functionalities implemented (user auth, document upload)     |
+| **Development Phase 2**          | Weeks 7 - 10       | AI integration (OCR, classification), multi-language support      |
+| **Testing and Quality Assurance**| Weeks 11 - 12      | Unit testing, integration testing, performance testing            |
+| **Deployment**                   | Week 13            | Final testing, deployment to production environment               |
 | **Maintenance and Support**      | Ongoing            | Continuous monitoring, updates, new features development          |
 
 ### Resource Allocation
@@ -484,17 +482,13 @@ WebApp -> User: Notify Process Completion
 - **Team Members**:
 
   - **Project Manager**: Oversees project execution and coordination.
-  - **Front-End Developers**: Implement UI components and client-side logic.
-  - **Back-End Developers**: Develop server-side functionality and APIs.
-  - **Data Scientists**: Work on AI/ML models and data processing.
-  - **QA Engineers**: Ensure software quality through testing.
-  - **UX/UI Designers**: Design user interfaces and improve user experience.
-  - **DevOps Engineers**: Manage deployment pipelines and infrastructure.
-  - **Security Specialists**: Focus on securing the application and data.
+  - **Full-Stack Developer**: Implements both front-end and back-end functionalities.
+  - **Data Scientist**: Works on AI/ML models and data processing.
+  - **QA Engineer**: Ensures software quality through testing.
 
 - **Tools and Technologies**:
 
-  - **Development Environments**: Visual Studio Code, PyCharm.
+  - **Development Environments**: Visual Studio Code.
   - **Collaboration**: Jira for project management, Confluence for documentation, GitHub for version control.
   - **Communication**: Slack or Microsoft Teams for team communication.
 
