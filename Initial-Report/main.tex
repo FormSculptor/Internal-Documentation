@@ -7,10 +7,13 @@
 	right=2cm
 ]{geometry}
 
-\usepackage{fontspec}
-\setmainfont{Arial}
+\usepackage[T1]{fontenc}
+\usepackage[scaled]{helvet}
+\renewcommand{\familydefault}{\sfdefault}
 
 \usepackage{graphicx}
+
+\usepackage{tabularx}
 
 \usepackage[hidelinks]{hyperref}
 \hypersetup{
@@ -32,7 +35,7 @@
 
 \begin{document}
     \begin{titlepage} 
-        \fontsize{45}{45}\selectfont\raggedright\textbf{Final Year Project Systems Development and Administration\\}
+        \fontsize{46}{46}\selectfont\raggedright\textbf{Final Year Project Systems Development and Administration\\}
         \vspace{0.03\textheight}
         \LARGE\textit{\textbf{Initial Report}}
         \vfill
