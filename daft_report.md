@@ -1,3 +1,5 @@
+Certainly, here is the revised report with additional diagrams included to enhance clarity and effectiveness.
+
 # FormSculptor Project Report
 
 ## Abstract
@@ -86,6 +88,29 @@ The system architecture consists of the following layers:
    - Deployed on **AWS** with auto-scaling capabilities.
    - Utilizes **Docker** and **Kubernetes** for containerization and orchestration.
 
+#### System Architecture Diagram
+
+```plantuml
+@startuml
+actor User
+rectangle "Front-End\n(React.js)" as FE
+rectangle "Back-End\n(Node.js/Express.js)" as BE
+rectangle "AI/ML Layer\n(Python)" as AI
+database "Data Access Layer\n(PostgreSQL, MongoDB, Redis)" as DB
+cloud "AWS Infrastructure" as AWS
+
+User --> FE
+FE --> BE
+BE --> AI
+AI --> DB
+BE --> DB
+BE --> AWS
+FE --> AWS
+@enduml
+```
+
+This diagram illustrates the overall system architecture, showing how different layers and components interact to provide the platform's functionalities.
+
 ### Scope
 
 FormSculptor aims to:
@@ -111,6 +136,28 @@ FormSculptor aims to:
 - **Description**: Uses OCR to extract text from documents in various formats.
 
 - **Constraints**: Dependent on document quality and processing time for large files.
+
+**Document Data Extraction Process**
+
+```plantuml
+@startuml
+start
+:User uploads document;
+:Store document in database;
+:Invoke OCR service;
+if (OCR successful?) then (Yes)
+  :Save extracted text;
+else (No)
+  :Notify user of OCR failure;
+endif
+:Perform data validation;
+:Classify document using ML model;
+:Store classification result;
+stop
+@enduml
+```
+
+This activity diagram represents the steps involved in extracting data from documents, emphasizing the decision points and interactions.
 
 #### 3. Intelligent Document Classification
 
@@ -154,27 +201,54 @@ FormSculptor aims to:
 
 ### Use Case Table
 
-| # | Use Case                               | Role            | Description                                                                                              | Constraints                                                |
-|---|----------------------------------------|-----------------|----------------------------------------------------------------------------------------------------------|------------------------------------------------------------|
-| 1 | User Registration with Email Validation| New User        | Users register by providing email and password; system validates email against disposable domains.       | Updated domain lists; low latency in validation.           |
-| 2 | Document Upload and Processing         | Registered User | Users upload documents; system extracts data using OCR and classifies documents.                         | Processing time varies; security of uploaded documents.    |
-| 3 | Form Creation and Deployment           | Registered User | Users create custom forms with drag-and-drop and deploy them to collect data.                            | Responsive and accessible forms; data privacy compliance.  |
-| 4 | Analytics Dashboard Access             | Registered User | Users view insights via dashboard with interactive visualizations.                                       | Real-time data; clear and informative presentations.       |
-| 5 | Multi-Language Document Processing     | Registered User | Users submit documents in various languages; system processes and extracts data accurately.              | Accurate language detection; support for multiple languages.|
+| #  | Use Case                               | Role            | Description                                                                                              | Constraints                                                 |
+|----|----------------------------------------|-----------------|----------------------------------------------------------------------------------------------------------|-------------------------------------------------------------|
+| 1  | User Registration with Email Validation| New User        | Users register by providing email and password; system validates email against disposable domains.       | Updated domain lists; low latency in validation.            |
+| 2  | Document Upload and Processing         | Registered User | Users upload documents; system extracts data using OCR and classifies documents.                         | Processing time varies; security of uploaded documents.     |
+| 3  | Form Creation and Deployment           | Registered User | Users create custom forms with drag-and-drop and deploy them to collect data.                            | Responsive and accessible forms; data privacy compliance.   |
+| 4  | Analytics Dashboard Access             | Registered User | Users view insights via dashboard with interactive visualizations.                                       | Real-time data; clear and informative presentations.        |
+| 5  | Multi-Language Document Processing     | Registered User | Users submit documents in various languages; system processes and extracts data accurately.              | Accurate language detection; support for multiple languages.|
 
 ### Use Case Diagram
 
 ```mermaid
 graph TD
-    A[New User] -- Registers --> B[User Registration]
-    B -- Validates Email --> C{Is Email Disposable?}
-    C -- No --> D[Account Creation]
-    C -- Yes --> E[Prompt for Valid Email]
-    F[Registered User] -- Uploads Document --> G[Document Processing]
-    F -- Creates --> H[Form Creation]
-    F -- Accesses --> I[Analytics Dashboard]
-    F -- Submits --> J[Multi-Language Processing]
+    A[New User] -->|Registers| B[User Registration]
+    B -->|Validates Email| C{Is Email Disposable?}
+    C -- Yes --> D[Prompt for Valid Email]
+    C -- No --> E[Account Creation]
+    F[Registered User] -->|Uploads Document| G[Document Processing]
+    F -->|Creates| H[Form Creation]
+    F -->|Accesses| I[Analytics Dashboard]
+    F -->|Submits| J[Multi-Language Processing]
 ```
+
+This diagram visualizes the primary use cases and interactions between the user and the system.
+
+### Activity Diagram for User Registration with Email Validation
+
+```plantuml
+@startuml
+start
+:User enters email and password;
+:Validate email format;
+:Check if email domain is disposable;
+if (Disposable?) then (Yes)
+  :Prompt user for valid email;
+  repeat
+    :User re-enters email;
+    :Validate email format;
+    :Check if email domain is disposable;
+  repeat while (Disposable?)
+else (No)
+  :Create user account;
+  :Send verification email;
+endif
+stop
+@enduml
+```
+
+This activity diagram outlines the flow of the user registration process, emphasizing the email validation steps.
 
 ### Class Diagram
 
@@ -227,40 +301,52 @@ User "1" --> "*" Payment
 @enduml
 ```
 
+This class diagram illustrates the relationships between different entities within the system.
+
 ### State Transition Diagram
 
 ```plantuml
 @startuml
-[*] --> Document_Uploaded
-Document_Uploaded : upload()
-Document_Uploaded --> Processing : validate()
-Processing --> Classified : process()
+[*] --> Idle
+Idle --> Document_Uploaded : uploadDocument()
+Document_Uploaded --> Processing : validateDocument()
+Processing --> Classified : classifyDocument()
 Classified --> Data_Extracted : extractData()
-Data_Extracted --> Archived : archive()
+Data_Extracted --> Archived : archiveDocument()
 Archived --> [*]
 @enduml
 ```
 
-### Sequence Diagram
+This diagram represents the states a document undergoes from upload to archival.
+
+### Sequence Diagram for Document Processing
 
 ```plantuml
 @startuml
 participant User
 participant WebApp
+participant FileStorage
 participant OCRService
 participant ClassificationService
 participant Database
+participant MLModel
 
 User -> WebApp: Upload Document
+WebApp -> FileStorage: Save Document
 WebApp -> Database: Store Document Metadata
 WebApp -> OCRService: Process Document
+OCRService -> FileStorage: Retrieve Document
 OCRService -> WebApp: Return Extracted Text
 WebApp -> ClassificationService: Classify Document
+ClassificationService -> MLModel: Predict Classification
+MLModel -> ClassificationService: Classification Result
 ClassificationService -> WebApp: Return Classification Result
 WebApp -> Database: Update Document Status
 WebApp -> User: Provide Processing Results
 @enduml
 ```
+
+This sequence diagram provides a comprehensive view of the interactions during the document processing workflow.
 
 ## Documentation for Detailed Design
 
@@ -305,6 +391,32 @@ WebApp -> User: Provide Processing Results
   - **Form Service**: Manages form creation and deployment with real-time updates.
   - **Analytics Service**: Processes data for dashboards using tools like **Tableau** or **Power BI**.
   - **Payment Service**: Integrates with payment gateways like **Stripe**.
+
+#### Component Diagram
+
+```plantuml
+@startuml
+component "User Interface" as UI
+component "Authentication Service" as Auth
+component "Document Service" as DocService
+component "Form Service" as FormService
+component "Analytics Service" as Analytics
+component "Database" as DB
+component "Machine Learning Models" as ML
+
+UI --> Auth
+UI --> DocService
+UI --> FormService
+UI --> Analytics
+DocService --> ML
+DocService --> DB
+FormService --> DB
+Auth --> DB
+Analytics --> DB
+@enduml
+```
+
+This diagram shows the relationships and dependencies between various system components.
 
 - **Communication**:
 
@@ -378,6 +490,19 @@ WebApp -> User: Provide Processing Results
 
 - **Regulatory Changes**: Must stay updated with evolving data protection laws.
 
+#### Risk Management Framework
+
+```mermaid
+graph TD
+    A[Identify Risks] --> B[Assess Risks]
+    B --> C[Plan Responses]
+    C --> D[Implement Responses]
+    D --> E[Monitor and Review]
+    E --> A
+```
+
+This diagram illustrates the continuous process of risk management within the project.
+
 ## Detailed Project Plan
 
 ### Timeline and Milestones
@@ -385,25 +510,24 @@ WebApp -> User: Provide Processing Results
 | Phase                              | Timeline      | Milestones                                                          |
 |------------------------------------|---------------|---------------------------------------------------------------------|
 | Planning and Analysis              | Month 1       | Requirements gathering, market research                             |
-| Design                             | Month 1       | System architecture, UI/UX prototypes                               |
-| Development Phase 1                | Month 2       | Core functionalities (authentication, document upload)              |
-| Development Phase 2                | Month 3       | AI integration, multi-language support                              |
-| Testing and Deployment             | Month 4       | Unit, integration, performance testing, deployment                  |
+| Design                             | Month 2       | System architecture, UI/UX prototypes                               |
+| Development and Testing            | Months 3-4    | Core functionalities, AI integration, multi-language support, testing|
+| Deployment                         | End of Month 4| Deployment on production environment                                |
 
 ### Resource Allocation
 
 - **Team Composition**:
 
-  - Project Manager
-  - Full-Stack Developer
-  - Data Scientist
-  - QA Engineer
+  - **Project Manager/Back-End Developer**: Oversees project execution, coordination, and server-side functionality.
+  - **Front-End Developer**: Implements UI components and client-side logic.
+  - **Data Scientist**: Works on AI/ML models and data processing.
+  - **QA Engineer/DevOps**: Ensures software quality through testing and manages deployment pipelines and infrastructure.
 
 - **Tools and Technologies**:
 
-  - **Collaboration**: GitHub
-  - **Development**: Visual Studio Code
-  - **Communication**: Discord
+  - **Collaboration**: Jira, Confluence, GitHub
+  - **Development**: Visual Studio Code, PyCharm
+  - **Communication**: Slack, Microsoft Teams
 
 ## References
 
@@ -442,7 +566,3 @@ Refer to the State Transition Diagram section for process flow.
 - **Findings**: No critical vulnerabilities; recommendations included enhancing encryption algorithms.
 
 - **Actions Taken**: Updated security protocols and conducted additional training for staff.
-
----
-
-**Note**: Diagrams are provided as code blocks using PlantUML and Mermaid. To view them, use appropriate rendering tools that support these formats.
