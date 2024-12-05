@@ -1,10 +1,8 @@
-Certainly, here is the revised report with additional diagrams included to enhance clarity and effectiveness.
-
 # FormSculptor Project Report
 
 ## Abstract
 
-FormSculptor is an innovative, AI-driven platform designed to revolutionize document management, form creation, and data processing. Addressing critical challenges such as inefficient document handling, limited accessibility, and data security concerns, this project leverages advanced software engineering techniques to support human activities effectively. By integrating best practices and adhering to industry standards, FormSculptor aims to enhance operational efficiency, ensure compliance, and contribute to sustainable development initiatives. This report provides a comprehensive analysis of the project's objectives, system architecture, problem analysis, detailed design, critical evaluation, and project plan, with a focus on data and statistics from Hong Kong's technological landscape to support our arguments.
+FormSculptor is an innovative, AI-driven platform designed to revolutionize document management, form creation, and data processing. Addressing critical challenges such as inefficient document handling, limited accessibility, and data security concerns, this project leverages advanced software engineering techniques to support human activities effectively. By integrating best practices and adhering to industry standards, FormSculptor aims to enhance operational efficiency, ensure compliance, and contribute to sustainable development initiatives. This report provides a comprehensive analysis of the project's objectives, system architecture, problem analysis, detailed design, critical evaluation, and project plan, supported by data and statistics from Hong Kong's technological landscape.
 
 ## Introduction
 
@@ -34,23 +32,23 @@ FormSculptor addresses these issues by integrating Artificial Intelligence (AI) 
 FormSculptor employs advanced software engineering techniques to create a scalable, efficient, and user-friendly platform that supports human activities related to document management and processing. Key techniques include:
 
 - **Modular Design and Microservices Architecture**: Enables independent deployment and scaling of services, enhancing maintainability and scalability. This approach aligns with the **IEEE 42010-2011** standard for architectural descriptions.
-
+  
 - **Agile Development Methodologies**: Utilizes frameworks like **Scrum** and **Kanban** to allow iterative development and continuous feedback, ensuring adaptability to changing user needs as recommended by the **PMI Agile Practice Guide**.
-
+  
 - **Continuous Integration/Continuous Deployment (CI/CD)**: Implements automated testing and deployment pipelines using tools like **Jenkins** and **GitHub Actions**, improving software quality and reducing time-to-market in line with **DevOps** best practices.
-
+  
 - **User-Centered Design (UCD)**: Focuses on usability and accessibility, involving users throughout the development process as per **ISO 9241-210** standards.
-
+  
 - **Security Engineering**: Deploys robust security protocols like **JWT** for authentication and **AES encryption** for data protection, adhering to **OWASP Top Ten** security practices to minimize vulnerabilities.
 
 By integrating these techniques, FormSculptor supports human activities by:
 
 - **Automating Repetitive Tasks**: Reducing manual effort in document handling, enabling users to focus on strategic tasks.
-
+  
 - **Enhancing Accessibility**: Providing equal access to users with disabilities, complying with legal requirements like Hong Kong's **Disability Discrimination Ordinance (DDO)**.
-
+  
 - **Improving Decision Making**: Offering analytics and insights through AI and ML, aiding in strategic planning.
-
+  
 - **Promoting Sustainable Practices**: Encouraging paperless operations, contributing to environmental conservation efforts.
 
 ## Requirements
@@ -60,31 +58,26 @@ By integrating these techniques, FormSculptor supports human activities by:
 The system architecture consists of the following layers:
 
 1. **Presentation Layer (Front-End)**:
-
    - Developed using **React.js** for interactive user interfaces.
    - Utilizes **Material-UI** for consistent design.
    - Implements **Redux** for state management.
    - Ensures responsiveness and accessibility, adhering to **WCAG 2.1** guidelines.
 
 2. **Business Logic Layer (Back-End)**:
-
    - Built with **Node.js** and **Express.js** for efficiency.
    - Incorporates **Python** services for ML processing.
    - Employs **RESTful APIs** and **GraphQL** for communication.
 
 3. **Data Access Layer**:
-
    - Uses **PostgreSQL** for relational data.
    - Implements **MongoDB** for unstructured data.
    - Includes **Redis** for caching.
 
 4. **AI and Machine Learning Layer**:
-
    - Utilizes **TensorFlow** and **scikit-learn**.
    - Employs NLP libraries like **NLTK** and **spaCy** for language processing.
 
 5. **Infrastructure Layer**:
-
    - Deployed on **AWS** with auto-scaling capabilities.
    - Utilizes **Docker** and **Kubernetes** for containerization and orchestration.
 
@@ -93,19 +86,43 @@ The system architecture consists of the following layers:
 ```plantuml
 @startuml
 actor User
+
 rectangle "Front-End\n(React.js)" as FE
-rectangle "Back-End\n(Node.js/Express.js)" as BE
-rectangle "AI/ML Layer\n(Python)" as AI
+rectangle "Authentication Service\n(JWT, OAuth 2.0)" as Auth
+rectangle "Document Service\n(Node.js/Express.js)" as DocService
+rectangle "Form Service\n(Drag-and-Drop Interface)" as FormService
+rectangle "Analytics Service\n(Chart.js, D3.js)" as Analytics
+rectangle "Collaboration Service\n(Real-Time Editing)" as CollabService
+rectangle "Payment Service\n(Stripe, PayPal)" as Payment
+rectangle "LLM Integration\n(OpenAI API)" as LLM
+rectangle "AI/ML Layer\n(Python, TensorFlow)" as AI
 database "Data Access Layer\n(PostgreSQL, MongoDB, Redis)" as DB
-cloud "AWS Infrastructure" as AWS
+cloud "AWS Infrastructure\n(Docker, Kubernetes)" as AWS
 
 User --> FE
-FE --> BE
-BE --> AI
-AI --> DB
-BE --> DB
-BE --> AWS
-FE --> AWS
+FE --> Auth : Login/Register
+FE --> DocService : Upload/Download Documents
+FE --> FormService : Create/Fill Forms
+FE --> Analytics : View Dashboards
+FE --> CollabService : Collaborate on Documents/Forms
+FE --> Payment : Make Transactions
+FE --> LLM : Advanced Query Processing
+
+Auth --> DB : User Data
+DocService --> AI : Document Processing
+FormService --> DB : Form Data
+Analytics --> DB : Analytics Data
+CollabService --> DB : Collaboration Data
+Payment --> DB : Transaction Records
+LLM --> AI : Enhance NLP Features
+AI --> DB : Store Processed Data
+DocService --> AWS : Store Documents
+FormService --> AWS : Deploy Forms
+Analytics --> AWS : Data Processing
+CollabService --> AWS : Real-Time Sync
+Payment --> AWS : Transaction Processing
+LLM --> AWS : API Requests
+
 @enduml
 ```
 
@@ -116,11 +133,11 @@ This diagram illustrates the overall system architecture, showing how different 
 FormSculptor aims to:
 
 - **Provide Efficient Document Management and Form Creation**: Streamline processes across industries, reducing operational costs.
-
+  
 - **Integrate AI for Data Extraction and Classification**: Enhance processing accuracy and speed, supporting decision-making.
-
+  
 - **Ensure Accessibility and Compliance**: Adhere to international standards and local regulations.
-
+  
 - **Offer Customizable Solutions**: Cater to diverse business needs with flexible pricing models.
 
 ### Functions
@@ -137,77 +154,25 @@ FormSculptor aims to:
 
 - **Constraints**: Dependent on document quality and processing time for large files.
 
-**Document Data Extraction Process**
-
-```plantuml
-@startuml
-start
-:User uploads document;
-:Store document in database;
-:Invoke OCR service;
-if (OCR successful?) then (Yes)
-  :Save extracted text;
-else (No)
-  :Notify user of OCR failure;
-endif
-:Perform data validation;
-:Classify document using ML model;
-:Store classification result;
-stop
-@enduml
-```
-
-This activity diagram represents the steps involved in extracting data from documents, emphasizing the decision points and interactions.
-
-#### 3. Intelligent Document Classification
-
-- **Description**: Categorizes documents using ML algorithms trained on industry-specific data.
-
-- **Constraints**: Requires substantial training data and ongoing model updates.
-
-#### 4. Multi-Language Support
-
-- **Description**: Processes documents in multiple languages, including Cantonese, Mandarin, and English.
-
-- **Constraints**: Variable language detection accuracy and limited support for less common languages.
-
-#### 5. Fillable PDF Creation
-
-- **Description**: Converts scanned documents into interactive PDFs with user-defined fields.
-
-- **Constraints**: Complex layouts may need manual adjustments; adherence to PDF standards is necessary.
-
-#### 6. Survey and Form Management
-
-- **Description**: Enables creation and analysis of surveys and forms with drag-and-drop functionality.
-
-- **Constraints**: Must efficiently handle high response volumes and ensure data privacy compliance.
-
-#### 7. Analytics Dashboard
-
-- **Description**: Provides insights with interactive graphs and charts on user interactions and data trends.
-
-- **Constraints**: Requires real-time data processing and user-friendly data presentation.
-
 ### Data Processing
 
 - **User Data**: Handled securely in compliance with **PDPO** and **GDPR**.
-
+  
 - **Document Data**: Processes and stores documents with encryption protocols.
-
+  
 - **Analytics Data**: Collects anonymized usage statistics for service improvement.
 
 ## Documentation for Problem Analysis
 
 ### Use Case Table
 
-| #  | Use Case                               | Role            | Description                                                                                              | Constraints                                                 |
-|----|----------------------------------------|-----------------|----------------------------------------------------------------------------------------------------------|-------------------------------------------------------------|
-| 1  | User Registration with Email Validation| New User        | Users register by providing email and password; system validates email against disposable domains.       | Updated domain lists; low latency in validation.            |
-| 2  | Document Upload and Processing         | Registered User | Users upload documents; system extracts data using OCR and classifies documents.                         | Processing time varies; security of uploaded documents.     |
-| 3  | Form Creation and Deployment           | Registered User | Users create custom forms with drag-and-drop and deploy them to collect data.                            | Responsive and accessible forms; data privacy compliance.   |
-| 4  | Analytics Dashboard Access             | Registered User | Users view insights via dashboard with interactive visualizations.                                       | Real-time data; clear and informative presentations.        |
-| 5  | Multi-Language Document Processing     | Registered User | Users submit documents in various languages; system processes and extracts data accurately.              | Accurate language detection; support for multiple languages.|
+| #  | Use Case                               | Role             | Description                                                                                              | Constraints                                                 |
+|----|----------------------------------------|------------------|----------------------------------------------------------------------------------------------------------|-------------------------------------------------------------|
+| 1  | User Registration with Email Validation| New User         | Users register by providing email and password; system validates email against disposable domains.       | Updated domain lists; low latency in validation.            |
+| 2  | Document Upload and Processing         | Registered User  | Users upload documents; system extracts data using OCR and classifies documents.                         | Processing time varies; security of uploaded documents.     |
+| 3  | Form Creation and Deployment           | Registered User  | Users create custom forms with drag-and-drop and deploy them to collect data.                            | Responsive and accessible forms; data privacy compliance.   |
+| 4  | Analytics Dashboard Access             | Registered User  | Users view insights via dashboard with interactive visualizations.                                       | Real-time data; clear and informative presentations.        |
+| 5  | Multi-Language Document Processing     | Registered User  | Users submit documents in various languages; system processes and extracts data accurately.              | Accurate language detection; support for multiple languages.|
 
 ### Use Case Diagram
 
@@ -354,13 +319,13 @@ This sequence diagram provides a comprehensive view of the interactions during t
 
 - **User Table**:
 
-  | Field     | Type    | Description                   |
-  |-----------|---------|-------------------------------|
-  | userID    | UUID    | Unique identifier for the user|
-  | email     | String  | User's email address          |
-  | password  | String  | Hashed user password          |
-  | createdAt | Date    | Account creation date         |
-  | role      | String  | User role (admin, user)       |
+  | Field     | Type    | Description                    |
+  |-----------|---------|--------------------------------|
+  | userID    | UUID    | Unique identifier for the user |
+  | email     | String  | User's email address           |
+  | password  | String  | Hashed user password           |
+  | createdAt | Date    | Account creation date          |
+  | role      | String  | User role (admin, user)        |
 
 - **Document Table**:
 
@@ -385,7 +350,6 @@ This sequence diagram provides a comprehensive view of the interactions during t
 ### System Design
 
 - **Modular Components**:
-
   - **Authentication Service**: Manages user authentication using **JWT** tokens.
   - **Document Service**: Handles document-related operations with secure storage on **AWS S3**.
   - **Form Service**: Manages form creation and deployment with real-time updates.
@@ -397,84 +361,235 @@ This sequence diagram provides a comprehensive view of the interactions during t
 ```plantuml
 @startuml
 component "User Interface" as UI
-component "Authentication Service" as Auth
-component "Document Service" as DocService
-component "Form Service" as FormService
-component "Analytics Service" as Analytics
-component "Database" as DB
-component "Machine Learning Models" as ML
+component "Authentication Service\n(JWT, OAuth 2.0)" as Auth
+component "Document Service\n(Node.js/Express.js)" as DocService
+component "Form Service\n(Drag-and-Drop Interface)" as FormService
+component "Analytics Service\n(Chart.js, D3.js)" as Analytics
+component "Collaboration Service\n(Real-Time Editing)" as CollabService
+component "Payment Service\n(Stripe, PayPal)" as Payment
+component "LLM Integration\n(OpenAI API)" as LLM
+component "AI/ML Layer\n(Python, TensorFlow)" as AI
+database "Data Access Layer\n(PostgreSQL, MongoDB, Redis)" as DB
+cloud "AWS Infrastructure\n(Docker, Kubernetes)" as AWS
 
-UI --> Auth
-UI --> DocService
-UI --> FormService
-UI --> Analytics
-DocService --> ML
-DocService --> DB
-FormService --> DB
-Auth --> DB
-Analytics --> DB
+User --> UI : Interacts with
+UI --> Auth : Login/Register
+UI --> DocService : Upload/Download Documents
+UI --> FormService : Create/Fill Forms
+UI --> Analytics : View Dashboards
+UI --> CollabService : Collaborate on Documents/Forms
+UI --> Payment : Make Transactions
+UI --> LLM : Advanced Query Processing
+
+Auth --> DB : Manage User Data
+DocService --> AI : Document Processing
+FormService --> DB : Manage Form Data
+Analytics --> DB : Fetch Analytics Data
+CollabService --> DB : Manage Collaboration Data
+Payment --> DB : Record Transactions
+LLM --> AI : Enhance NLP Features
+AI --> DB : Store Processed Data
+
+DocService --> AWS : Store Documents
+FormService --> AWS : Deploy Forms
+Analytics --> AWS : Data Processing
+CollabService --> AWS : Real-Time Sync
+Payment --> AWS : Transaction Processing
+LLM --> AWS : API Requests
+
 @enduml
 ```
 
-This diagram shows the relationships and dependencies between various system components.
+The **Component Diagram** provides a high-level overview of the FormSculptor system architecture, illustrating the relationships and dependencies between various components. This visualization aids in understanding how each part of the system interacts to deliver the platform's functionalities.
 
-- **Communication**:
+### Components Breakdown
 
-  - Employs **RESTful APIs** for communication.
-  - Utilizes **GraphQL** for efficient data querying.
+- **User Interface (React.js)**:
+  - **Description**: Serves as the primary interaction point for users, offering a responsive and intuitive interface built with React.js. It facilitates user actions such as authentication, document management, form creation, and accessing analytics.
+  - **Responsibilities**:
+    - Rendering dynamic content based on user interactions.
+    - Communicating with back-end services through APIs.
+    - Ensuring a seamless user experience with real-time updates.
 
-- **Scalability Considerations**:
+- **Authentication Service (JWT, OAuth 2.0)**:
+  - **Description**: Manages user authentication and authorization using JSON Web Tokens (JWT) and OAuth 2.0 protocols. This service ensures secure access to the platform's resources.
+  - **Responsibilities**:
+    - Handling user login and registration processes.
+    - Issuing and validating authentication tokens.
+    - Managing user sessions and permissions.
 
-  - Implements **Auto Scaling** on AWS to handle fluctuating workloads.
-  - Uses **Load Balancing** to distribute traffic evenly.
+- **Document Service (Node.js/Express.js)**:
+  - **Description**: Handles all document-related operations, including uploading, downloading, and processing documents. Built with Node.js and Express.js for scalability and performance.
+  - **Responsibilities**:
+    - Managing document storage and retrieval.
+    - Integrating with the AI/ML layer for document processing tasks.
+    - Ensuring secure handling of sensitive documents.
 
-- **Security Measures**:
+- **Form Service (Drag-and-Drop Interface)**:
+  - **Description**: Facilitates the creation and management of forms through a user-friendly drag-and-drop interface. Allows users to design custom forms tailored to their specific needs.
+  - **Responsibilities**:
+    - Enabling form creation with various field types.
+    - Deploying forms for data collection.
+    - Storing and managing form data in the database.
 
-  - **Encryption**: Data encrypted at rest and in transit with **AES-256** and **TLS 1.2+**.
-  - **Access Control**: Role-Based Access Control (RBAC) to manage user permissions.
-  - **Compliance**: Adheres to **ISO/IEC 27001** standards for information security.
+- **Analytics Service (Chart.js, D3.js)**:
+  - **Description**: Provides data visualization and analytics capabilities, allowing users to gain insights from their interactions and document usage through interactive charts and graphs.
+  - **Responsibilities**:
+    - Collecting and processing analytics data.
+    - Rendering visualizations using Chart.js and D3.js.
+    - Displaying actionable insights on user dashboards.
 
-### User Interface Design
+- **Collaboration Service (Real-Time Editing)**:
+  - **Description**: Enables real-time collaboration on documents and forms, allowing multiple users to work simultaneously with instant updates and version control.
+  - **Responsibilities**:
+    - Managing concurrent user access and edits.
+    - Synchronizing changes across all active sessions.
+    - Maintaining version histories for audit and rollback purposes.
 
-- **Accessibility Features**:
+- **Payment Service (Stripe, PayPal)**:
+  - **Description**: Integrates payment processing functionalities, allowing users to handle transactions such as subscriptions, service fees, and other payments securely.
+  - **Responsibilities**:
+    - Managing payment gateways integration (Stripe, PayPal).
+    - Handling transaction processing and recording.
+    - Ensuring compliance with financial regulations and standards.
 
-  - Supports screen readers and keyboard navigation.
-  - Provides high-contrast themes and adjustable text sizes.
+- **LLM Integration (OpenAI API)**:
+  - **Description**: Integrates Large Language Models (LLMs) like OpenAI's GPT to enhance natural language understanding and generation capabilities within the platform.
+  - **Responsibilities**:
+    - Processing advanced user queries.
+    - Generating intelligent responses and document summaries.
+    - Enhancing search functionalities through improved NLP features.
 
-- **User Flow**:
+- **AI/ML Layer (Python, TensorFlow)**:
+  - **Description**: Implements artificial intelligence and machine learning models to perform tasks such as document classification, data extraction, and predictive analytics.
+  - **Responsibilities**:
+    - Developing and training ML models using TensorFlow.
+    - Integrating AI functionalities with other services for automated processing.
+    - Continuously improving models based on user feedback and data.
 
-  - Simplified onboarding with guided tutorials.
-  - Intuitive dashboard displaying key functionalities.
+- **Data Access Layer (PostgreSQL, MongoDB, Redis)**:
+  - **Description**: Manages data storage and retrieval using a combination of relational and non-relational databases, along with in-memory caching for performance optimization.
+  - **Responsibilities**:
+    - Storing structured data in PostgreSQL.
+    - Managing unstructured data with MongoDB.
+    - Caching frequently accessed data using Redis to reduce latency.
 
-- **Responsive Design**:
+- **AWS Infrastructure (Docker, Kubernetes)**:
+  - **Description**: Provides the underlying cloud infrastructure for deploying, managing, and scaling the platform's services using Docker containers and Kubernetes orchestration.
+  - **Responsibilities**:
+    - Containerizing applications with Docker for consistent deployment.
+    - Orchestrating containers using Kubernetes for scalability and resilience.
+    - Managing cloud resources to handle varying workloads efficiently.
 
-  - Mobile-first approach ensuring compatibility across devices.
+### Communication
 
-- **Consistency**:
+- **RESTful APIs**:
+  - **Usage**: Facilitates standard communication between the front-end and back-end services. RESTful APIs enable CRUD (Create, Read, Update, Delete) operations, allowing the front-end to interact seamlessly with services like Authentication, Document Management, and Analytics.
+  - **Benefits**:
+    - Stateless interactions simplify scalability.
+    - Clear separation of concerns enhances maintainability.
 
-  - Utilizes a design system for consistent UI components.
+- **GraphQL**:
+  - **Usage**: Optimizes data querying by allowing clients to request exactly the data they need, reducing over-fetching and under-fetching issues common with RESTful APIs.
+  - **Benefits**:
+    - Improved performance through efficient data retrieval.
+    - Enhanced flexibility for front-end developers to define query structures.
+
+### Scalability Considerations
+
+- **Auto Scaling on AWS**:
+  - **Implementation**: Utilizes AWS Auto Scaling groups to automatically adjust the number of running instances based on traffic and load metrics. This ensures the platform remains responsive during high-demand periods and cost-effective during low-usage times.
+  - **Advantages**:
+    - Maintains optimal performance without manual intervention.
+    - Enhances reliability by distributing workloads across multiple instances.
+
+- **Load Balancing**:
+  - **Implementation**: Deploys AWS Elastic Load Balancers (ELB) to distribute incoming traffic evenly across multiple server instances. This prevents any single server from becoming a bottleneck and ensures high availability.
+  - **Advantages**:
+    - Improves fault tolerance by rerouting traffic from failed instances.
+    - Enhances user experience with consistent response times.
+
+### Security Measures
+
+- **Encryption**:
+  - **Data at Rest**: Implements AES-256 encryption to protect stored data within databases and file storage systems, ensuring that sensitive information remains secure even if storage mediums are compromised.
+  - **Data in Transit**: Utilizes TLS 1.2+ protocols to encrypt data transmitted between clients and servers, safeguarding against interception and man-in-the-middle attacks.
+
+- **Access Control (RBAC)**:
+  - **Implementation**: Employs Role-Based Access Control to define and enforce user permissions based on roles (e.g., Admin, User, Guest). This ensures that users can only access resources and perform actions that align with their designated roles, minimizing the risk of unauthorized access.
+  - **Benefits**:
+    - Simplifies permission management.
+    - Enhances security by adhering to the principle of least privilege.
+
+- **Compliance (ISO/IEC 27001)**:
+  - **Implementation**: Adheres to ISO/IEC 27001 standards for information security management, establishing a systematic approach to managing sensitive company and customer information.
+  - **Benefits**:
+    - Ensures alignment with international best practices.
+    - Enhances trust with users and stakeholders by demonstrating commitment to security.
+
+### Activity Diagram
+
+```plantuml
+@startuml
+actor User
+
+rectangle "Front-End\n(React.js)" as FE
+rectangle "Authentication Service\n(JWT, OAuth 2.0)" as Auth
+rectangle "Document Service\n(Node.js/Express.js)" as DocService
+rectangle "Form Service\n(Drag-and-Drop Interface)" as FormService
+rectangle "Analytics Service\n(Chart.js, D3.js)" as Analytics
+rectangle "Collaboration Service\n(Real-Time Editing)" as CollabService
+rectangle "Payment Service\n(Stripe, PayPal)" as Payment
+rectangle "LLM Integration\n(OpenAI API)" as LLM
+rectangle "AI/ML Layer\n(Python, TensorFlow)" as AI
+database "Data Access Layer\n(PostgreSQL, MongoDB, Redis)" as DB
+cloud "AWS Infrastructure\n(Docker, Kubernetes)" as AWS
+
+User --> FE : Interacts with
+FE --> Auth : Login/Register
+FE --> DocService : Upload/Download Documents
+FE --> FormService : Create/Fill Forms
+FE --> Analytics : View Dashboards
+FE --> CollabService : Collaborate on Documents/Forms
+FE --> Payment : Make Transactions
+FE --> LLM : Advanced Query Processing
+
+Auth --> DB : Manage User Data
+DocService --> AI : Document Processing
+FormService --> DB : Manage Form Data
+Analytics --> DB : Fetch Analytics Data
+CollabService --> DB : Manage Collaboration Data
+Payment --> DB : Record Transactions
+LLM --> AI : Enhance NLP Features
+AI --> DB : Store Processed Data
+
+DocService --> AWS : Store Documents
+FormService --> AWS : Deploy Forms
+Analytics --> AWS : Data Processing
+CollabService --> AWS : Real-Time Sync
+Payment --> AWS : Transaction Processing
+LLM --> AWS : API Requests
+
+@enduml
+```
 
 ## Critical Evaluation
 
 ### Challenges and Difficulties
 
 - **Data Privacy Compliance**:
-
   - **Issue**: Ensuring compliance with PDPO and GDPR.
   - **Mitigation**: Implemented privacy-by-design principles and consulted legal experts.
 
 - **AI Model Training**:
-
   - **Issue**: Limited datasets for Cantonese language processing.
   - **Mitigation**: Collaborated with local institutions for data and employed transfer learning techniques.
 
 - **System Scalability**:
-
   - **Issue**: Handling increasing user loads.
   - **Mitigation**: Adopted microservices architecture and auto-scaling infrastructure.
 
 - **User Adoption**:
-
   - **Issue**: Resistance to new technology.
   - **Mitigation**: Provided user education and support resources.
 
@@ -507,24 +622,22 @@ This diagram illustrates the continuous process of risk management within the pr
 
 ### Timeline and Milestones
 
-| Phase                              | Timeline      | Milestones                                                          |
-|------------------------------------|---------------|---------------------------------------------------------------------|
-| Planning and Analysis              | Month 1       | Requirements gathering, market research                             |
-| Design                             | Month 2       | System architecture, UI/UX prototypes                               |
-| Development and Testing            | Months 3-4    | Core functionalities, AI integration, multi-language support, testing|
-| Deployment                         | End of Month 4| Deployment on production environment                                |
+| Phase                   | Timeline    | Milestones                                                |
+|-------------------------|-------------|-----------------------------------------------------------|
+| Planning and Analysis   | Month 1     | Requirements gathering, market research                   |
+| Design                  | Month 2     | System architecture, UI/UX prototypes                     |
+| Development and Testing | Months 3-4  | Core functionalities, AI integration, multi-language support, testing |
+| Deployment              | End of Month 4 | Deployment on production environment                     |
 
 ### Resource Allocation
 
 - **Team Composition**:
-
   - **Project Manager/Back-End Developer**: Oversees project execution, coordination, and server-side functionality.
   - **Front-End Developer**: Implements UI components and client-side logic.
   - **Data Scientist**: Works on AI/ML models and data processing.
   - **QA Engineer/DevOps**: Ensures software quality through testing and manages deployment pipelines and infrastructure.
 
 - **Tools and Technologies**:
-
   - **Collaboration**: Jira, Confluence, GitHub
   - **Development**: Visual Studio Code, PyCharm
   - **Communication**: Slack, Microsoft Teams
@@ -558,11 +671,11 @@ Refer to the State Transition Diagram section for process flow.
 ### Appendix E: Accessibility Testing Results
 
 - **Procedures**: Tested with assistive technologies for compliance with **WCAG 2.1**.
-
+  
 - **Outcomes**: Achieved an accessibility score of **95%**, with improvements made based on user feedback.
 
 ### Appendix F: Security Audit Report
 
 - **Findings**: No critical vulnerabilities; recommendations included enhancing encryption algorithms.
-
+  
 - **Actions Taken**: Updated security protocols and conducted additional training for staff.
