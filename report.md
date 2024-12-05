@@ -730,7 +730,7 @@ Whose document should be removed and what sort of processing should be for **Reg
 
 The use of appropriate language detection and encouraging information in multiple languages is one important aspect, as mentioned in the statement given by **Chan and Wong (2021).** This idea further supports the range and distribution of language models within the platform. On the other side, the judgment points out that each language must be individually improved to achieve a high performance in terms of accuracy and readability, especially when applied to various multilingual contexts rather than one, just like in Hong Kong.
 
-**Actor Description**
+### Actor Description
 
 **FormSculptor** is used by various actors with different roles to meet their duties and use the platform at different levels. Understanding these typical roles is therefore very important for creating a user-friendly and secure, role-based, and function-based approach to the various components.
 
@@ -924,8 +924,6 @@ FormSculptor represents a strategic solution to the pressing challenges in docum
 
 ### References
 
-### References
-
 1. Chan, A., & Lee, B. (2022). _Impact of Customizable Templates on Operational Efficiency in Financial Institutions_. Journal of Financial Technology, 15(3), 245-260.
 2. Chan, A., & Wong, C. (2021). _Enhancing Data Privacy through Disposable Email Domain Validation_. International Journal of Cybersecurity, 10(2), 112-130.
 3. Chan, D., Lee, E., & Wong, F. (2023). _Real-Time Data Analytics in Competitive Business Environments_. Hong Kong Journal of Data Science, 8(1), 50-68.
@@ -967,22 +965,22 @@ FormSculptor represents a strategic solution to the pressing challenges in docum
 39. Greenpeace.(2023) The environmental impact of paper production.
 40. PwC.(2023) The hidden costs of poor document management.
 41. Inefficient Document Management
-    https://blog.ripcord.com/resources/the-true-cost-of-poor-document-management https://openaccessojs.com/JBReview/article/view/4112
+    <https://blog.ripcord.com/resources/the-true-cost-of-poor-document-management> <https://openaccessojs.com/JBReview/article/view/4112>
 
 42. Limited Accessibility
-    https://ltu.diva-portal.org/smash/get/diva2:1892828/FULLTEXT01.pdf
+    <https://ltu.diva-portal.org/smash/get/diva2:1892828/FULLTEXT01.pdf>
 
 43. Data Privacy and Security Concerns
-    https://hongkongfp.com/2024/01/30/data-breach-notifications-rose-by-nearly-50-in-2023-hong-kong-privacy-watchdog-finds/ https://www.pcpd.org.hk/english/news_events/media_statements/press_20231221.html
+    <https://hongkongfp.com/2024/01/30/data-breach-notifications-rose-by-nearly-50-in-2023-hong-kong-privacy-watchdog-finds/> <https://www.pcpd.org.hk/english/news_events/media_statements/press_20231221.html>
 
 44. High Operational Costs
-    https://blr.com/resources/how-much-do-paper-records-cost-your-company/ https://blog.ripcord.com/resources/the-true-cost-of-poor-document-management https://www.abacademies.org/articles/literature-review-machine-learning-in-accounting-and-assurance-12072.html
+    <https://blr.com/resources/how-much-do-paper-records-cost-your-company/> <https://blog.ripcord.com/resources/the-true-cost-of-poor-document-management> <https://www.abacademies.org/articles/literature-review-machine-learning-in-accounting-and-assurance-12072.html>
 
 45. Lack of Customization and Flexibility
-    https://www.folderit.com/blog/maximizing-office-productivity-with-document-management-systems-dms/ https://teamhub.com/blog/understanding-the-benefits-of-document-management-system-integration/ https://www.sqlview.com.sg/document-management-system-singapore/productivity/maximizing-efficiency-and-customer-satisfaction-the-powerful-impact-of-document-management/
+    <https://www.folderit.com/blog/maximizing-office-productivity-with-document-management-systems-dms/> <https://teamhub.com/blog/understanding-the-benefits-of-document-management-system-integration/> <https://www.sqlview.com.sg/document-management-system-singapore/productivity/maximizing-efficiency-and-customer-satisfaction-the-powerful-impact-of-document-management/>
 
 46. Environmental Impact
-    https://www.officedasher.com/paper-consumption-statistics/ https://maxfiles.ng/the-environmental-benefits-of-using-a-digital-document-management-system/ https://www.recordnations.com/blog/how-much-paper-is-used-in-one-day/ https://document-logistix.com/paperless-office/go-green-with-digital-documents/
+    <https://www.officedasher.com/paper-consumption-statistics/> <https://maxfiles.ng/the-environmental-benefits-of-using-a-digital-document-management-system/> <https://www.recordnations.com/blog/how-much-paper-is-used-in-one-day/> <https://document-logistix.com/paperless-office/go-green-with-digital-documents/>
 
 ### Glossary
 
