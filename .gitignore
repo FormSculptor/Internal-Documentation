@@ -20,6 +20,7 @@ gitignore
 *.bak
 *.tmp
 *.temp
+*.fdb_latexmk
 
 # Editor-specific files
 *.swp
