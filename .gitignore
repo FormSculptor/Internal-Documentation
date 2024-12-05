@@ -1,0 +1,39 @@
+gitignore
+# LaTeX auxiliary files
+*.aux
+*.bbl
+*.blg
+*.dvi
+*.log
+*.out
+*.toc
+*.lot
+*.lof
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.pdf
+*.ps
+
+# Backup files
+*~
+*.bak
+*.tmp
+*.temp
+
+# Editor-specific files
+*.swp
+*.swo
+*.swn
+*.DS_Store
+*.vscode/
+*.idea/
+
+# Other files
+*.class
+*.o
+*.exe
+*.out
+
+# Ignore any output directory
+output/
