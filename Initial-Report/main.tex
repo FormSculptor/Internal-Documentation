@@ -1,49 +1,38 @@
 \documentclass[a4paper]{article}
 
-\usepackage{fontspec}
-\setmonofont{Droid Sans Mono}
-\renewcommand\familydefault{\sfdefault}
-
-\usepackage{minted}
-\setminted{
-    fontsize=\scriptsize,
-    linenos,
-    breaklines,
-    frame=single
-}
-
-\usepackage{graphicx}
-\usepackage{pdfpages}
-
 \usepackage[
-    a4paper,
 	margin=3cm,
 	bottom=3cm,
 	left=2cm,
 	right=2cm
 ]{geometry}
+
+\usepackage{fontspec}
+\setmainfont{Arial}
+
+\usepackage{graphicx}
+
 \usepackage[hidelinks]{hyperref}
 \hypersetup{
-    pdfcreator={WONG Ka Yeung},
-    pdfproducer={WONG Ka Yeung}
+    pdfcreator={FormSculptor},
+    pdfproducer={FormSculptor}
 }
+
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\pagestyle{fancy}
+\fancyhead[L]{ITE4116M Final Year Project - Systems Development and Administration}
+\fancyhead[R]{Initial Report}
+\fancyfoot[C]{\thepage~of \pageref{LastPage}}
 
 \usepackage{tocloft}
 \tocloftpagestyle{fancy}
 \renewcommand\cftsecdotsep{\cftdot}
 \renewcommand\cftsubsecdotsep{\cftdot}
 
-\usepackage{fancyhdr}
-\usepackage{lastpage}
-\pagestyle{fancy}
-\fancyhf{}
-\fancyhead[L]{ITE4116M Final Year Project - Systems Development and Administration}
-\fancyhead[R]{Initial Report}
-\fancyfoot[C]{\thepage~of \pageref{LastPage}}
-
 \begin{document}
     \begin{titlepage} 
-        \fontsize{46}{46}\selectfont\raggedright\textbf{Final Year Project Systems Development and Administration\\}
+        \fontsize{45}{45}\selectfont\raggedright\textbf{Final Year Project Systems Development and Administration\\}
         \vspace{0.03\textheight}
         \LARGE\textit{\textbf{Initial Report}}
         \vfill
@@ -51,8 +40,6 @@
         \vspace{0.01\textheight}
         05 December, 2024
     \end{titlepage}
-    
-    \thispagestyle{empty}
     \newpage
 
     \include{Sections/00-Abstract}
