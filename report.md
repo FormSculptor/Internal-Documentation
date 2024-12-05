@@ -251,27 +251,6 @@ The organizational feasibility of implementing FormSculptor is assessed as low-r
 
 - The user-centric design approach ensures that feedback from potential users is incorporated throughout the development process, enhancing acceptance and usability.
 
-### Organizational Feasibility
-
-The organizational feasibility of implementing FormSculptor is assessed as low-risk:
-
-\*\*\*\*Support from Leadership
-
-- The project has received strong endorsement from the academic advisors and faculty members, who recognize the importance of modernizing document management practices within educational institutions.
-- The team's proactive engagement with stakeholders, including potential users and administrative staff, has fostered a positive environment for collaboration and support.
-
-\*\*\*\*Staffing Resources
-
-- The team consists of four dedicated software engineering students, each bringing unique skills in areas such as programming, database management, and user interface design. This diverse skill set enhances the team's capability to address various aspects of the project effectively.
-
-- Additionally, access to mentors and consultants with expertise in similar applications provides valuable guidance and support throughout the development process.
-
-\*\*\*\*User Acceptance
-
-- While there may be some concerns among users regarding the transition to a new system, particularly about job security and changes in workflow, the overall sentiment is optimistic. Users anticipate improved efficiency in retrieving and managing forms.
-
-- The user-centric design approach ensures that feedback from potential users is incorporated throughout the development process, enhancing acceptance and usability.
-
 ## Constraints and Limitations
 
 ### Challenges and Difficulties
