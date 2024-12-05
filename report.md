@@ -210,6 +210,26 @@ With regard to culture and politics, FormSculptor has been devised in such a way
 
 In the final analysis, FormSculptor is setting its nonfunctional requirements with the utmost precision to provide a safe, trusted, and usable platform. Accessibility, operational efficiency, performance optimization, security, cultural sensitivity, and usability have been so sharply prioritized that FormSculptor goes beyond meeting requirements for its diverse user audience in Hong Kong; it strives to satisfy them. Steady observance of that nonfunctional pattern requires FormSculptor to be permanently sustainable of being the most valuable and effective tool for managing documents and processing data for many practical reasons.
 
+## Feasibility Analysis
+
+### Economic Feasibility
+
+The Technical feasibility of implementing FormSculptor is assessed as low-risk:
+
+- **Cost Savings**: Transitioning to a digital document management system can lead to significant reductions in operational costs. Organizations that adopt paperless operations can save up to **25%** in document management costs, as reported by the Hong Kong Productivity Council (HKPC, 2022). This includes savings on paper, printing, and storage expenses.
+
+- **Revenue Streams**: FormSculptor's business model includes diverse revenue streams such as freemium offerings, subscription plans, pay-per-use services, and customization options. This diversification helps mitigate financial risks and ensures a steady return on investment by catering to various user segments
+
+### Technical Feasibility
+
+The Technical feasibility of implementing FormSculptor is assessed as low-risk:
+
+- **Team Expertise**: The software development team possesses extensive knowledge in programing and develop, which are crucial for the platform's development. Furthermore, consultants are available to provide additional support as needed.
+
+- **Project Size and Complexity**: The project team is of medium size, allowing for effective collaboration and user involvement. However, the critical timeframe for project completion presents a medium risk that requires careful management.
+
+- **Compatibility**: The existing technology infrastructure is adequate for supporting the new system. Internet services are already established and can scale as needed. However, variations in computer systems across departments may pose compatibility challenges that need addressing.
+
 ### Organizational Feasibility
 
 The organizational feasibility of implementing FormSculptor is assessed as low-risk:
@@ -231,8 +251,6 @@ The organizational feasibility of implementing FormSculptor is assessed as low-r
 
 - The user-centric design approach ensures that feedback from potential users is incorporated throughout the development process, enhancing acceptance and usability.
 
-## Feasibility Analysis
-
 ### Organizational Feasibility
 
 The organizational feasibility of implementing FormSculptor is assessed as low-risk:
@@ -253,24 +271,6 @@ The organizational feasibility of implementing FormSculptor is assessed as low-r
 - While there may be some concerns among users regarding the transition to a new system, particularly about job security and changes in workflow, the overall sentiment is optimistic. Users anticipate improved efficiency in retrieving and managing forms.
 
 - The user-centric design approach ensures that feedback from potential users is incorporated throughout the development process, enhancing acceptance and usability.
-
-### Economic Feasibility
-
-The Technical feasibility of implementing FormSculptor is assessed as low-risk:
-
-- **Cost Savings**: Transitioning to a digital document management system can lead to significant reductions in operational costs. Organizations that adopt paperless operations can save up to **25%** in document management costs, as reported by the Hong Kong Productivity Council (HKPC, 2022). This includes savings on paper, printing, and storage expenses.
-
-- **Revenue Streams**: FormSculptor's business model includes diverse revenue streams such as freemium offerings, subscription plans, pay-per-use services, and customization options. This diversification helps mitigate financial risks and ensures a steady return on investment by catering to various user segments
-
-### Technical Feasibility
-
-The Technical feasibility of implementing FormSculptor is assessed as low-risk:
-
-- **Team Expertise**: The software development team possesses extensive knowledge in programing and develop, which are crucial for the platform's development. Furthermore, consultants are available to provide additional support as needed.
-
-- **Project Size and Complexity**: The project team is of medium size, allowing for effective collaboration and user involvement. However, the critical timeframe for project completion presents a medium risk that requires careful management.
-
-- **Compatibility**: The existing technology infrastructure is adequate for supporting the new system. Internet services are already established and can scale as needed. However, variations in computer systems across departments may pose compatibility challenges that need addressing.
 
 ## Constraints and Limitations
 
