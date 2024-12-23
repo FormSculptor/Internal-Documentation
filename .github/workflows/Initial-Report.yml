@@ -1,8 +1,5 @@
 name: Build Initial Report PDF
-on:
-  push:
-    paths:
-      - 'Initial-Report/**'
+on: workflow_dispatch
 jobs:
   build_latex:
     runs-on: ubuntu-24.04
