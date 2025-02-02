@@ -632,115 +632,169 @@ Response ||--|{ Payment : involves
 @enduml
 ```
 
-### Entity Relationship Database Tables
+### Class Diagram
 
-### User Table
+```plantuml
+@startuml
+class User {
+  + userID : UUID
+  + email : String
+  + password : String
+  + createdAt : Date
+  + lastLogin : Date
+  + roleID : UUID
+  + status : String
+}
 
-| Field     | Type   | Description                    |
-| --------- | ------ | ------------------------------ |
-| userID    | UUID   | Unique identifier for the user |
-| email     | String | User's email address           |
-| password  | String | Hashed user password           |
-| createdAt | Date   | Account creation date          |
-| lastLogin | Date   | Last login timestamp           |
-| roleID    | UUID   | Associated role of the user    |
-| status    | String | Account status                 |
+class Role {
+  + roleID : UUID
+  + roleName : String
+  + permissions : String
+}
 
-### Role Table
+class Document {
+  + documentID : UUID
+  + userID : UUID
+  + filePath : String
+  + uploadDate : Date
+  + status : String
+  + classification : String
+  + processedAt : Date
+  + ocrText : Text
+}
 
-| Field       | Type   | Description                          |
-| ----------- | ------ | ------------------------------------ |
-| roleID      | UUID   | Unique identifier for the role       |
-| roleName    | String | Name of the role (e.g., admin, user) |
-| permissions | String | Permissions associated with the role |
+class Form {
+  + formID : UUID
+  + userID : UUID
+  + formSchema : JSON
+  + createdAt : Date
+  + isActive : Boolean
+  + sourceType : String
+}
 
-### Document Table
+class Response {
+  + responseID : UUID
+  + formID : UUID
+  + userID : UUID
+  + submittedAt : Date
+  + content : Text
+  + status : String
+  + isScanned : Boolean
+  + originalScanPath : String
+  + paymentID : UUID
+}
 
-| Field          | Type   | Description                        |
-| -------------- | ------ | ---------------------------------- |
-| documentID     | UUID   | Unique identifier for the document |
-| userID         | UUID   | Owner of the document              |
-| filePath       | String | Location of the stored document    |
-| uploadDate     | Date   | Date of upload                     |
-| status         | String | Current processing status          |
-| classification | String | Classification result              |
-| processedAt    | Date   | Date of processing                 |
-| ocrText        | Text   | Extracted text from OCR            |
+class Analytics {
+  + analyticsID : UUID
+  + userID : UUID
+  + dashboardConfig : JSON
+  + lastViewed : Date
+}
 
-### Form Table
+class Payment {
+  + paymentID : UUID
+  + userID : UUID
+  + amount : Double
+  + paymentMethod : String
+  + transactionDate : Date
+  + status : String
+}
 
-| Field      | Type    | Description                    |
-| ---------- | ------- | ------------------------------ |
-| formID     | UUID    | Unique identifier for the form |
-| userID     | UUID    | Creator of the form            |
-| formSchema | JSON    | Structure of the form fields   |
-| createdAt  | Date    | Form creation date             |
-| isActive   | Boolean | Form active status             |
-| sourceType | String  | Source type of the form        |
+class AuditLog {
+  + logID : UUID
+  + userID : UUID
+  + action : String
+  + timestamp : Date
+  + details : Text
+}
 
-### Response Table
+class Notification {
+  + notificationID : UUID
+  + userID : UUID
+  + message : String
+  + type : String
+  + status : String
+  + timestamp : Date
+}
 
-| Field            | Type    | Description                                |
-| ---------------- | ------- | ------------------------------------------ |
-| responseID       | UUID    | Unique identifier for the response         |
-| formID           | UUID    | Associated form                            |
-| userID           | UUID    | User who submitted the response            |
-| submittedAt      | Date    | Submission date                            |
-| content          | Text    | Content of the response                    |
-| status           | String  | Current status of the response             |
-| isScanned        | Boolean | Indicates if the response is from a scan   |
-| originalScanPath | String  | File path of the original scanned document |
-| paymentID        | UUID    | Associated payment (if applicable)         |
+class UserPreferences {
+  + preferenceID : UUID
+  + userID : UUID
+  + settings : JSON
+  + lastUpdated : Date
+}
 
-### Analytics Table
+User "1" -- "0..*" Document : uploads
+User "1" -- "0..*" Form : creates
+User "1" -- "0..*" Response : submits
+User "1" -- "0..*" Analytics : accesses
+User "1" -- "0..*" Payment : makes
+User "1" -- "0..*" Notification : receives
+User "1" -- "0..*" UserPreferences : has
+User "1" -- "0..1" Role : has
+User "1" -- "0..*" AuditLog : logs
 
-| Field           | Type | Description                                |
-| --------------- | ---- | ------------------------------------------ |
-| analyticsID     | UUID | Unique identifier for the analytics record |
-| userID          | UUID | Owner of the analytics data                |
-| dashboardConfig | JSON | Configuration for the analytics dashboard  |
-| lastViewed      | Date | Timestamp of the last dashboard access     |
+Form "1" -- "0..*" Response : generates
+Response "1" -- "0..1" Payment : involves
+@enduml
+```
 
-### Payment Table
+### State Transition Diagram
 
-| Field           | Type   | Description                                        |
-| --------------- | ------ | -------------------------------------------------- |
-| paymentID       | UUID   | Unique identifier for the payment                  |
-| userID          | UUID   | User who made the payment                          |
-| amount          | Double | Amount paid                                        |
-| paymentMethod   | String | Method used for the payment (e.g., Stripe, PayPal) |
-| transactionDate | Date   | Date of the transaction                            |
-| status          | String | Status of the payment                              |
+```plantuml
+@startuml
+[*] --> DocumentUploaded
+DocumentUploaded --> OCRProcessing : start OCR
+OCRProcessing --> Classification : OCR complete
+Classification --> DataExtraction : classify document
+DataExtraction --> DataValidation : extract data
+DataValidation --> DataStorage : validate data
+DataStorage --> [*] : store data
+@enduml
+```
 
-### AuditLog Table
+### Sequence Diagram for Document Processing
 
-| Field     | Type   | Description                               |
-| --------- | ------ | ----------------------------------------- |
-| logID     | UUID   | Unique identifier for the audit log entry |
-| userID    | UUID   | User who performed the action             |
-| action    | String | Description of the action                 |
-| timestamp | Date   | Time when the action was performed        |
-| details   | Text   | Detailed information about the action     |
+```plantuml
+@startuml
+actor User
+participant "FormSculptor" as FS
+participant "OCR Service" as OCR
+participant "Classification Service" as CLS
+participant "Data Storage" as DS
 
-### Notification Table
+User -> FS : Upload Document
+FS -> OCR : Start OCR
+OCR -> FS : OCR Complete
+FS -> CLS : Classify Document
+CLS -> FS : Classification Complete
+FS -> DS : Store Data
+DS -> FS : Data Stored
+FS -> User : Upload Complete
+@enduml
+```
 
-| Field          | Type   | Description                            |
-| -------------- | ------ | -------------------------------------- |
-| notificationID | UUID   | Unique identifier for the notification |
-| userID         | UUID   | User who received the notification     |
-| message        | String | Notification message                   |
-| type           | String | Type of notification                   |
-| status         | String | Status of the notification             |
-| timestamp      | Date   | Timestamp of the notification          |
+### Sequence Diagram for Form Submission Process
 
-### UserPreferences Table
+```plantuml
+@startuml
+actor User
+participant "FormSculptor" as FS
+participant "Validation Service" as VS
+participant "Data Storage" as DS
 
-| Field        | Type | Description                               |
-| ------------ | ---- | ----------------------------------------- |
-| preferenceID | UUID | Unique identifier for the user preference |
-| userID       | UUID | User associated with the preference       |
-| settings     | JSON | User settings in JSON format              |
-| lastUpdated  | Date | Last updated timestamp                    |
+User -> FS : Submit Form
+FS -> VS : Validate Form Data
+VS -> FS : Validation Result
+alt Validation Success
+  FS -> DS : Store Form Data
+  DS -> FS : Data Stored
+  FS -> User : Submission Successful
+else Validation Failure
+  FS -> User : Submission Failed
+end
+@enduml
+```
 
 ## Use Case
 
