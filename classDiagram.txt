@@ -1,0 +1,301 @@
+classDiagram
+    class Webhook {
+        id String
+        name String
+        createdAt DateTime
+        updatedAt DateTime
+        url String
+        source WebhookSource
+        environmentId String
+        triggers PipelineTriggers[]
+        surveyIds String[]
+    }
+    class ContactAttribute {
+        id String
+        createdAt DateTime
+        updatedAt DateTime
+        attributeKeyId String
+        contactId String
+        value String
+    }
+    class ContactAttributeKey {
+        id String
+        createdAt DateTime
+        updatedAt DateTime
+        isUnique Boolean
+        key String
+        name String
+        description String
+        type ContactAttributeType
+        environmentId String
+    }
+    class Contact {
+        id String
+        userId String
+        createdAt DateTime
+        updatedAt DateTime
+        environmentId String
+    }
+    class Response {
+        id String
+        createdAt DateTime
+        updatedAt DateTime
+        finished Boolean
+        surveyId String
+        contactId String
+        endingId String
+        data Json
+        variables Json
+        ttc Json
+        meta Json
+        singleUseId String
+        language String
+        displayId String
+    }
+    class ResponseNote {
+        id String
+        createdAt DateTime
+        updatedAt DateTime
+        responseId String
+        userId String
+        text String
+        isResolved Boolean
+        isEdited Boolean
+    }
+    class Tag {
+        id String
+        createdAt DateTime
+        updatedAt DateTime
+        name String
+        environmentId String
+    }
+    class TagsOnResponses {
+        responseId String
+        tagId String
+    }
+    class Display {
+        id String
+        createdAt DateTime
+        updatedAt DateTime
+        surveyId String
+        contactId String
+        responseId String
+        status DisplayStatus
+    }
+    class SurveyTrigger {
+        id String
+        createdAt DateTime
+        updatedAt DateTime
+        surveyId String
+        actionClassId String
+    }
+    class SurveyAttributeFilter {
+        id String
+        createdAt DateTime
+        updatedAt DateTime
+        attributeKeyId String
+        surveyId String
+        condition SurveyAttributeFilterCondition
+        value String
+    }
+    class Survey {
+        id String
+        createdAt DateTime
+        updatedAt DateTime
+        name String
+        redirectUrl String
+        type SurveyType
+        environmentId String
+        createdBy String
+        status SurveyStatus
+        welcomeCard Json
+        questions Json
+        endings Json[]
+        hiddenFields Json
+        variables Json
+        displayOption displayOptions
+        recontactDays Int
+        displayLimit Int
+        inlineTriggers Json
+        autoClose Int
+        autoComplete Int
+        delay Int
+        runOnDate DateTime
+        closeOnDate DateTime
+        surveyClosedMessage Json
+        segmentId String
+        projectOverwrites Json
+        styling Json
+        singleUse Json
+        verifyEmail Json
+        isVerifyEmailEnabled Boolean
+        isSingleResponsePerEmailEnabled Boolean
+        pin String
+        resultShareKey String
+        displayPercentage Decimal
+        showLanguageSwitch Boolean
+    }
+    class SurveyFollowUp {
+        id String
+        createdAt DateTime
+        updatedAt DateTime
+        surveyId String
+        name String
+        trigger Json
+        action Json
+    }
+    class ActionClass {
+        id String
+        createdAt DateTime
+        updatedAt DateTime
+        name String
+        description String
+        type ActionType
+        key String
+        noCodeConfig Json
+        environmentId String
+    }
+    class Integration {
+        id String
+        type IntegrationType
+        environmentId String
+        config Json
+    }
+    class DataMigration {
+        id String
+        startedAt DateTime
+        finishedAt DateTime
+        name String
+        status DataMigrationStatus
+    }
+    class Environment {
+        id String
+        createdAt DateTime
+        updatedAt DateTime
+        type EnvironmentType
+        projectId String
+        widgetSetupCompleted Boolean
+        appSetupCompleted Boolean
+    }
+    class Project {
+        id String
+        createdAt DateTime
+        updatedAt DateTime
+        name String
+        organizationId String
+        brandColor String
+        highlightBorderColor String
+        styling Json
+        config Json
+        recontactDays Int
+        linkSurveyBranding Boolean
+        inAppSurveyBranding Boolean
+        placement WidgetPlacement
+        clickOutsideClose Boolean
+        darkOverlay Boolean
+        logo Json
+    }
+    class Organization {
+        id String
+        createdAt DateTime
+        updatedAt DateTime
+        name String
+        billing Json
+        whitelabel Json
+    }
+    class ApiKey {
+        id String
+        createdAt DateTime
+        updatedAt DateTime
+        key String
+        environmentId String
+        name String
+    }
+    class Document {
+        id String
+        createdAt DateTime
+        updatedAt DateTime
+        url String
+        name String
+        contentType String
+        size Int
+        environmentId String
+        surveyId String
+        responseId String
+    }
+    class Insight {
+        id String
+        createdAt DateTime
+        updatedAt DateTime
+        environmentId String
+        name String
+        description String
+        query Json
+        config Json
+    }
+    class Language {
+        code String
+        name String
+        projectId String
+    }
+    class Membership {
+        id String
+        userId String
+        organizationId String
+        role Role
+    }
+    class ProjectTeam {
+        id String
+        projectId String
+        teamId String
+    }
+    class Segment {
+        id String
+        createdAt DateTime
+        updatedAt DateTime
+        name String
+        environmentId String
+        filters Json
+    }
+    class SurveyLanguage {
+        code String
+        surveyId String
+    }
+    Webhook -- Environment : environment
+    ContactAttribute -- ContactAttributeKey : attributeKey
+    ContactAttribute -- Contact : contact
+    ContactAttributeKey -- Environment : environment
+    Contact -- Environment : environment
+    Response -- Survey : survey
+    Response -- Contact : contact
+    ResponseNote -- Response : response
+    ResponseNote -- User : user
+    Tag -- Environment : environment
+    TagsOnResponses -- Response : response
+    TagsOnResponses -- Tag : tag
+    Display -- Survey : survey
+    Display -- Contact : contact
+    Display -- Response : response
+    SurveyTrigger -- Survey : survey
+    SurveyTrigger -- ActionClass : actionClass
+    SurveyAttributeFilter -- ContactAttributeKey : attributeKey
+    SurveyAttributeFilter -- Survey : survey
+    Survey -- Environment : environment
+    Survey -- User : creator
+    Survey -- Segment : segment
+    SurveyFollowUp -- Survey : survey
+    ActionClass -- Environment : environment
+    Integration -- Environment : environment
+    Environment -- Project : project
+    Project -- Organization : organization
+    ApiKey -- Environment : environment
+    Document -- Environment : environment
+    Document -- Survey : survey
+    Document -- Response : response
+    Insight -- Environment : environment
+    Language -- Project : project
+    Membership -- User : user
+    Membership -- Organization : organization
+    ProjectTeam -- Project : project
+    Segment -- Environment : environment
+    SurveyLanguage -- Survey : survey
