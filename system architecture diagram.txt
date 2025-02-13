@@ -1,0 +1,86 @@
+graph TD
+    A[User Interface]
+    B[Backend Services]
+    C[Database]
+    D[Third-Party Services]
+    E[Authentication Service]
+    F[Payment Gateway]
+    G[Analytics Service]
+    H[Notification Service]
+    I[Document Storage]
+
+    A -->|HTTP Requests| B
+    B -->|CRUD Operations| C
+    B -->|API Calls| D
+    B -->|Auth Requests| E
+    B -->|Payment Processing| F
+    B -->|Data Analysis| G
+    B -->|Send Notifications| H
+    B -->|Store Documents| I
+
+    subgraph Frontend
+        A1[React.js]
+        A2[Material-UI]
+        A3[Redux]
+        A --> A1
+        A --> A2
+        A --> A3
+    end
+
+    subgraph Backend
+        B1[Node.js]
+        B2[Express.js]
+        B3[Python Services]
+        B --> B1
+        B --> B2
+        B --> B3
+    end
+
+    subgraph Databases
+        C1[PostgreSQL]
+        C2[MongoDB]
+        C3[Redis]
+        C --> C1
+        C --> C2
+        C --> C3
+    end
+
+    subgraph Third-Party
+        D1[RESTful APIs]
+        D2[GraphQL]
+        D3[AWS Services]
+        D --> D1
+        D --> D2
+        D --> D3
+    end
+
+    subgraph Authentication
+        E1[JWT]
+        E2[OAuth 2.0]
+        E --> E1
+        E --> E2
+    end
+
+    subgraph Payment
+        F1[Stripe API]
+        F --> F1
+    end
+
+    subgraph Analytics
+        G1[Chart.js]
+        G2[D3.js]
+        G --> G1
+        G --> G2
+    end
+
+    subgraph Notifications
+        H1[Email Service]
+        H2[SMS Service]
+        H --> H1
+        H --> H2
+    end
+
+    subgraph Storage
+        I1[Encrypted Storage]
+        I --> I1
+    end
